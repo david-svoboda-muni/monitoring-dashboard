@@ -29,12 +29,12 @@ jobs:
       - name: Build plugin
         run: npm run build
 
-      - name: Update Home.json with dynamic server
-        run: |
-          sed -i "s|__GRAFANA_SERVER__|${GRAFANA_SERVER}|g" Home.json
-
+      # GRAFANA_SERVER is a comma-separated list of hostnames, e.g. "alfa.fi.muni.cz,beta.fi.muni.cz"
       - name: Sign plugin
-        run: npx @grafana/sign-plugin --rootUrls http://${GRAFANA_SERVER}:3000
+        run: |
+          ROOT_URLS=$(echo "$GRAFANA_SERVER" | tr -d ' ' | sed -E 's#([^,]+)#http://\1:3000/#g')
+          echo "Signing for: $ROOT_URLS"
+          npx @grafana/sign-plugin --rootUrls "$ROOT_URLS"
 
       - name: Package release files
         run: |
