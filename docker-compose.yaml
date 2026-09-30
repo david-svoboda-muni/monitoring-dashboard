@@ -26,7 +26,7 @@ services:
       - DB_NAME=${DB_NAME}
       
     volumes:
-      - ./monitoring-plugin/dist/:/var/lib/grafana/plugins/xforman2-servermonitoring-scenesapp
+      - ./monitoring-plugin/dist/:/var/lib/grafana/plugins/xforman2muni-servermonitoring-scenesapp
       - ./monitoring-plugin/provisioning:/etc/grafana/provisioning
       - grafana-storage:/var/lib/grafana
       - ./Home.json:/tmp/Home.json

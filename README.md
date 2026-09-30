@@ -101,7 +101,7 @@ docker compose up --build -d
 This will:
 
 * Start Grafana Enterprise (`grafana/grafana-enterprise:10.3.1`).
-* Mount the plugin under `/var/lib/grafana/plugins/xforman2-servermonitoring-scenesapp`.
+* Mount the plugin under `/var/lib/grafana/plugins/xforman2muni-servermonitoring-scenesapp`.
 * Apply provisioning configs and the `Home.json` dashboard.
 
 ### 6. Verify Deployment
