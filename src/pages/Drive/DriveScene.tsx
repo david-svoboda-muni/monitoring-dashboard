@@ -16,7 +16,7 @@ import { ThresholdsMode, TooltipDisplayMode, VisibilityMode} from '@grafana/sche
 import { PanelMetaData } from '../SceneAppPageInitialization';
 
 const blocksPanelMetaData: PanelMetaData = {
-  title: "Drive Space Utilizaition (%)",
+  title: "Drive Space Utilization (%)",
   description: "This timeline shows the amount of space utilized by a user.",
   unit: "%",
   min: 0,
@@ -125,11 +125,11 @@ const filesQuery = (serverId: VariableValueSingle, server: string) => new SceneQ
         datasource: SQL_DATASOURCE_2,
         refId: 'A',
         format: "time_series",
-          rawSql: `SELECT TimeCreated as time, Login, (FilesUsed / INodeCapacity) * 100 as FilesUsed
+          rawSql: `SELECT TimeCreated as time, Login, (INodesUsed / INodeCapacity) * 100 as FilesUsed
           FROM UserDiskRecord dr
           JOIN User u ON UserId = u.Id
           JOIN Machine m ON MachineId = m.Id
-          WHERE FilesUsed IS NOT NULL AND MachineId = '${serverId}' AND Login  IN ($userDrive${server}) AND $__timeFilter(TimeCreated) 
+          WHERE INodesUsed IS NOT NULL AND MachineId = '${serverId}' AND Login  IN ($userDrive${server}) AND $__timeFilter(TimeCreated) 
           ORDER BY time`
     }],
 
